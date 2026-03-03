@@ -1,0 +1,137 @@
+Collecting fastapi
+  Using cached fastapi-0.135.1-py3-none-any.whl (116 kB)
+Collecting uvicorn[standard]
+  Using cached uvicorn-0.41.0-py3-none-any.whl (68 kB)
+Collecting SQLAlchemy
+  Using cached sqlalchemy-2.0.48-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.2 MB)
+Collecting asyncpg
+  Using cached asyncpg-0.31.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (2.9 MB)
+Collecting alembic
+  Using cached alembic-1.18.4-py3-none-any.whl (263 kB)
+Collecting pydantic-settings
+  Using cached pydantic_settings-2.13.1-py3-none-any.whl (58 kB)
+Collecting python-jose[cryptography]
+  Using cached python_jose-3.5.0-py2.py3-none-any.whl (34 kB)
+Collecting passlib[argon2]
+  Using cached passlib-1.7.4-py2.py3-none-any.whl (525 kB)
+Collecting redis
+  Using cached redis-7.2.1-py3-none-any.whl (396 kB)
+Collecting celery
+  Using cached celery-5.6.2-py3-none-any.whl (445 kB)
+Collecting pytest
+  Using cached pytest-9.0.2-py3-none-any.whl (374 kB)
+Collecting pytest-asyncio
+  Using cached pytest_asyncio-1.3.0-py3-none-any.whl (15 kB)
+Collecting httpx
+  Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Collecting python-dotenv
+  Using cached python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+Collecting annotated-doc>=0.0.2
+  Using cached annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Collecting typing-inspection>=0.4.2
+  Using cached typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+Collecting pydantic>=2.7.0
+  Using cached pydantic-2.12.5-py3-none-any.whl (463 kB)
+Collecting starlette>=0.46.0
+  Using cached starlette-0.52.1-py3-none-any.whl (74 kB)
+Collecting typing-extensions>=4.8.0
+  Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Collecting click>=7.0
+  Using cached click-8.3.1-py3-none-any.whl (108 kB)
+Collecting h11>=0.8
+  Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting httptools>=0.6.3
+  Using cached httptools-0.7.1-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (440 kB)
+Collecting watchfiles>=0.20
+  Using cached watchfiles-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (455 kB)
+Collecting pyyaml>=5.1
+  Using cached pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (770 kB)
+Collecting websockets>=10.4
+  Using cached websockets-16.0-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (183 kB)
+Collecting uvloop>=0.15.1
+  Using cached uvloop-0.22.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.7 MB)
+Collecting greenlet>=1
+  Using cached greenlet-3.3.2-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (591 kB)
+Collecting async_timeout>=4.0.3
+  Using cached async_timeout-5.0.1-py3-none-any.whl (6.2 kB)
+Collecting Mako
+  Using cached mako-1.3.10-py3-none-any.whl (78 kB)
+Collecting tomli
+  Using cached tomli-2.4.0-py3-none-any.whl (14 kB)
+Collecting ecdsa!=0.15
+  Using cached ecdsa-0.19.1-py2.py3-none-any.whl (150 kB)
+Collecting pyasn1>=0.5.0
+  Using cached pyasn1-0.6.2-py3-none-any.whl (83 kB)
+Collecting rsa!=4.1.1,!=4.4,<5.0,>=4.0
+  Using cached rsa-4.9.1-py3-none-any.whl (34 kB)
+Collecting cryptography>=3.4.0
+  Using cached cryptography-46.0.5-cp38-abi3-manylinux_2_34_x86_64.whl (4.5 MB)
+Collecting argon2-cffi>=18.2.0
+  Using cached argon2_cffi-25.1.0-py3-none-any.whl (14 kB)
+Collecting billiard<5.0,>=4.2.1
+  Using cached billiard-4.2.4-py3-none-any.whl (87 kB)
+Collecting exceptiongroup>=1.3.0
+  Using cached exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+Collecting click-repl>=0.2.0
+  Using cached click_repl-0.3.0-py3-none-any.whl (10 kB)
+Collecting python-dateutil>=2.8.2
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Collecting kombu>=5.6.0
+  Using cached kombu-5.6.2-py3-none-any.whl (214 kB)
+Collecting click-plugins>=1.1.1
+  Using cached click_plugins-1.1.1.2-py2.py3-none-any.whl (11 kB)
+Collecting tzlocal
+  Using cached tzlocal-5.3.1-py3-none-any.whl (18 kB)
+Collecting click-didyoumean>=0.3.0
+  Using cached click_didyoumean-0.3.1-py3-none-any.whl (3.6 kB)
+Collecting vine<6.0,>=5.1.0
+  Using cached vine-5.1.0-py3-none-any.whl (9.6 kB)
+Collecting packaging>=22
+  Downloading packaging-26.0-py3-none-any.whl (74 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.4/74.4 kB 490.3 kB/s eta 0:00:00
+Collecting pygments>=2.7.2
+  Using cached pygments-2.19.2-py3-none-any.whl (1.2 MB)
+Collecting iniconfig>=1.0.1
+  Using cached iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Collecting pluggy<2,>=1.5
+  Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Collecting backports-asyncio-runner<2,>=1.1
+  Downloading backports_asyncio_runner-1.2.0-py3-none-any.whl (12 kB)
+Collecting anyio
+  Using cached anyio-4.12.1-py3-none-any.whl (113 kB)
+Collecting httpcore==1.*
+  Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Collecting certifi
+  Downloading certifi-2026.2.25-py3-none-any.whl (153 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.7/153.7 kB 1.8 MB/s eta 0:00:00
+Collecting idna
+  Using cached idna-3.11-py3-none-any.whl (71 kB)
+Collecting argon2-cffi-bindings
+  Downloading argon2_cffi_bindings-25.1.0-cp39-abi3-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.1/87.1 kB 1.6 MB/s eta 0:00:00
+Collecting prompt-toolkit>=3.0.36
+  Using cached prompt_toolkit-3.0.52-py3-none-any.whl (391 kB)
+Collecting cffi>=2.0.0
+  Downloading cffi-2.0.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (216 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 216.5/216.5 kB 3.3 MB/s eta 0:00:00
+Collecting six>=1.9.0
+  Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Collecting tzdata>=2025.2
+  Using cached tzdata-2025.3-py2.py3-none-any.whl (348 kB)
+Collecting amqp<6.0.0,>=5.1.1
+  Downloading amqp-5.3.1-py3-none-any.whl (50 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.9/50.9 kB 1.1 MB/s eta 0:00:00
+Collecting annotated-types>=0.6.0
+  Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Collecting pydantic-core==2.41.5
+  Using cached pydantic_core-2.41.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+Collecting MarkupSafe>=0.9.2
+  Downloading markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Collecting pycparser
+  Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.2/48.2 kB 1.1 MB/s eta 0:00:00
+Collecting wcwidth
+  Downloading wcwidth-0.6.0-py3-none-any.whl (94 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 94.2/94.2 kB 1.8 MB/s eta 0:00:00
+Installing collected packages: passlib, websockets, wcwidth, vine, uvloop, tzlocal, tzdata, typing-extensions, tomli, six, pyyaml, python-dotenv, pygments, pycparser, pyasn1, pluggy, packaging, MarkupSafe, iniconfig, idna, httptools, h11, greenlet, click, certifi, billiard, backports-asyncio-runner, async_timeout, annotated-types, annotated-doc, uvicorn, typing-inspection, SQLAlchemy, rsa, redis, python-dateutil, pydantic-core, prompt-toolkit, Mako, httpcore, exceptiongroup, ecdsa, click-plugins, click-didyoumean, cffi, asyncpg, amqp, python-jose, pytest, pydantic, kombu, cryptography, click-repl, argon2-cffi-bindings, anyio, alembic, watchfiles, starlette, pytest-asyncio, pydantic-settings, httpx, celery, argon2-cffi, fastapi
+Successfully installed Mako-1.3.10 MarkupSafe-3.0.3 SQLAlchemy-2.0.48 alembic-1.18.4 amqp-5.3.1 annotated-doc-0.0.4 annotated-types-0.7.0 anyio-4.12.1 argon2-cffi-25.1.0 argon2-cffi-bindings-25.1.0 async_timeout-5.0.1 asyncpg-0.31.0 backports-asyncio-runner-1.2.0 billiard-4.2.4 celery-5.6.2 certifi-2026.2.25 cffi-2.0.0 click-8.3.1 click-didyoumean-0.3.1 click-plugins-1.1.1.2 click-repl-0.3.0 cryptography-46.0.5 ecdsa-0.19.1 exceptiongroup-1.3.1 fastapi-0.135.1 greenlet-3.3.2 h11-0.16.0 httpcore-1.0.9 httptools-0.7.1 httpx-0.28.1 idna-3.11 iniconfig-2.3.0 kombu-5.6.2 packaging-26.0 passlib-1.7.4 pluggy-1.6.0 prompt-toolkit-3.0.52 pyasn1-0.6.2 pycparser-3.0 pydantic-2.12.5 pydantic-core-2.41.5 pydantic-settings-2.13.1 pygments-2.19.2 pytest-9.0.2 pytest-asyncio-1.3.0 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 python-jose-3.5.0 pyyaml-6.0.3 redis-7.2.1 rsa-4.9.1 six-1.17.0 starlette-0.52.1 tomli-2.4.0 typing-extensions-4.15.0 typing-inspection-0.4.2 tzdata-2025.3 tzlocal-5.3.1 uvicorn-0.41.0 uvloop-0.22.1 vine-5.1.0 watchfiles-1.1.1 wcwidth-0.6.0 websockets-16.0
