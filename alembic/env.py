@@ -59,9 +59,10 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
+    print("ALEMBIC DB:", get_sync_url())  
     connectable = async_engine_from_config(
         {
-            "sqlalchemy.url": settings.DATABASE_URL,
+            "sqlalchemy.url": get_sync_url(),  # ← use sync URL here
         },
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
@@ -82,12 +83,6 @@ def run_migrations_online() -> None:
             context.run_migrations()
 
     asyncio.run(run_async_migrations())
-
-
-if context.is_offline_mode():
-    run_migrations_offline()
-else:
-    run_migrations_online()
     
     
 def get_sync_url():
