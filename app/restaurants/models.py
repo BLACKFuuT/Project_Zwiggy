@@ -45,5 +45,5 @@ class Restaurant(Base):
     )
 
     # Relationships (future-proof)
-    # menu_items = relationship("MenuItem", back_populates="restaurant")
-    # orders = relationship("Order", back_populates="restaurant")
+    menu_items = relationship("MenuItem", back_populates="restaurant")
+    orders = relationship("Order", back_populates="restaurant")

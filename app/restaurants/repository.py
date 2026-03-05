@@ -10,7 +10,7 @@ from .models import Restaurant
 class RestaurantRepository:
 
     async def create(
-        self,
+        self,   
         db: AsyncSession,
         data: dict
     ) -> Restaurant:
