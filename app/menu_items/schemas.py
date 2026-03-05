@@ -1,31 +1,29 @@
-# app/restaurants/schemas.py
-
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
 
 
-class RestaurantBase(BaseModel):
+class MenuItemBase(BaseModel):
     name: str
     description: Optional[str] = None
-    address: str
+    price: float
+    is_available: bool = True
 
 
-class RestaurantCreate(RestaurantBase):
-    pass
+class MenuItemCreate(MenuItemBase):
+    restaurant_id: int
 
 
-class RestaurantUpdate(BaseModel):
+class MenuItemUpdate(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
-    address: Optional[str] = None
-    is_active: Optional[bool] = None
+    price: Optional[float] = None
+    is_available: Optional[bool] = None
 
 
-class RestaurantResponse(RestaurantBase):
+class MenuItemResponse(MenuItemBase):
     id: int
-    owner_id: int
-    is_active: bool
+    restaurant_id: int
     created_at: datetime
     updated_at: datetime
 

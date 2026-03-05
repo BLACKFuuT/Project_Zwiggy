@@ -4,11 +4,11 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.database import get_db
-from core.security import decode_token
-from users.repository import UserRepository
-from users.models import User
-from rbac.repository import RBACRepository
+from app.core.database import get_db
+from app.core.security import decode_token
+from app.users.repository import UserRepository
+from app.users.models import User
+from app.rbac.repository import RBACRepository
 
 
 oauth2_scheme = OAuth2PasswordBearer(
