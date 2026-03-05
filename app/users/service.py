@@ -37,6 +37,9 @@ class UserService:
 
         user = await self.repo.create_user(user)
 
+        # load profile explicitly
+        await self.db.refresh(user, attribute_names=["profile"])
+        
         # Default role assignment can go here later
         rbac_repo = RBACRepository(self.db)
         role = await rbac_repo.get_role_by_name("Customer")
