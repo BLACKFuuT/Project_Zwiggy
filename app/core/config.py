@@ -8,6 +8,10 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    ADMIN_EMAIL: str
+    ADMIN_PASSWORD: str
+    SENDER_EMAIL: str
+    SENDER_PASSWORD: str
     
     class Config:
         env_file = ".env"

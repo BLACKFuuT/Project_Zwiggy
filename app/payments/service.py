@@ -1,48 +1,63 @@
 import uuid
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
 
 from app.payments.repository import PaymentRepository
+from app.orders.repository import OrderRepository
 from app.payments.models import Payment
-from app.orders.models import Order
+from app.users.models import User
 
 
 class PaymentService:
 
     def __init__(self):
         self.repository = PaymentRepository()
+        self.order_repo = OrderRepository()
 
     async def initiate_payment(
         self,
         db: AsyncSession,
         order_id: int,
-        user_id: int
+        current_user: User
     ):
 
-        # 1️⃣ Validate order exists
-        result = await db.execute(
-            select(Order).where(Order.id == order_id)
-        )
-        order = result.scalar_one_or_none()
+        # 1️⃣ Validate order
+        order = await self.order_repo.get_order_by_id(db, order_id)
 
         if not order:
-            raise HTTPException(404, "Order not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Order not found"
+            )
 
-        if order.customer_id != user_id:
-            raise HTTPException(403, "Forbidden")
+        # 2️⃣ Ensure user owns the order
+        if order.customer_id != current_user.id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Forbidden"
+            )
 
-        if order.status != "PENDING":
-            raise HTTPException(400, "Order already processed")
+        # 3️⃣ Prevent duplicate payments
+        existing = await self.repository.get_by_order_id(
+            db,
+            order_id
+        )
 
-        # 2️⃣ Create payment record
+        if existing:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Payment already initiated for this order"
+            )
+
+        # 4️⃣ Create payment
         payment = Payment(
             order_id=order.id,
             amount=order.total_amount,
-            status="INITIATED"
+            status="INITIATED",
         )
 
         await self.repository.create(db, payment)
+
         await db.commit()
         await db.refresh(payment)
 
@@ -51,35 +66,43 @@ class PaymentService:
     async def confirm_payment(
         self,
         db: AsyncSession,
-        payment_id: int
+        payment_id: int,
+        current_user: User
     ):
 
-        payment = await self.repository.get_by_id(db, payment_id)
+        payment = await self.repository.get_by_id(
+            db,
+            payment_id
+        )
 
         if not payment:
-            raise HTTPException(404, "Payment not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Payment not found"
+            )
 
-        # 🔥 Simulate payment success
+        # simulate payment gateway success
         transaction_id = str(uuid.uuid4())
 
         await self.repository.update_status(
             db,
             payment_id,
             status="SUCCESS",
-            transaction_id=transaction_id
+            transaction_id=transaction_id,
         )
 
-        # Update order status
-        await db.execute(
-            select(Order).where(Order.id == payment.order_id)
-        )
-
-        await db.execute(
-            Order.__table__.update()
-            .where(Order.id == payment.order_id)
-            .values(status="CONFIRMED")
+        # update order status
+        await self.order_repo.update_status(
+            db,
+            payment.order_id,
+            "CONFIRMED"
         )
 
         await db.commit()
 
-        return payment
+        updated_payment = await self.repository.get_by_id(
+            db,
+            payment_id
+        )
+
+        return updated_payment  

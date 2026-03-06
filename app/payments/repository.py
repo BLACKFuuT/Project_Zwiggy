@@ -39,3 +39,13 @@ class PaymentRepository:
                 transaction_id=transaction_id
             )
         )
+        
+    async def get_by_order_id(
+        self,
+        db: AsyncSession,
+        order_id: int
+    ):
+        result = await db.execute(
+            select(Payment).where(Payment.order_id == order_id)
+        )
+        return result.scalar_one_or_none()

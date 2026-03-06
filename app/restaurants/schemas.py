@@ -3,6 +3,7 @@
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
+from uuid import UUID
 
 
 class RestaurantBase(BaseModel):
@@ -24,10 +25,18 @@ class RestaurantUpdate(BaseModel):
 
 class RestaurantResponse(RestaurantBase):
     id: int
-    owner_id: int
+    owner_id: UUID
     is_active: bool
     created_at: datetime
     updated_at: datetime
 
     class Config:
         from_attributes = True
+        
+# app/restaurants/schemas.py
+
+class RestaurantListResponse(BaseModel):
+    id: int
+    name: str
+    description: Optional[str] = None
+    address: str
