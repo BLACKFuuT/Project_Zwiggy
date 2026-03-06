@@ -4,7 +4,7 @@ import aioredis  # Async Redis client
 import uuid  # Needed for UUID type check
 
 # Redis URL (change if needed)
-REDIS_URL = "redis://localhost:6379/0"
+REDIS_URL = "redis://localhost:6379/0"          
 
 # Singleton Redis connection
 _redis = None

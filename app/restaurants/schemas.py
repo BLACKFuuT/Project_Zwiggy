@@ -40,3 +40,6 @@ class RestaurantListResponse(BaseModel):
     name: str
     description: Optional[str] = None
     address: str
+    
+    class Config:
+        from_attributes = True

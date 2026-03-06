@@ -1,15 +1,18 @@
+import json
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import HTTPException, status
 
 from .repository import RestaurantRepository
-from .schemas import RestaurantCreate, RestaurantUpdate
+from .schemas import RestaurantCreate, RestaurantUpdate, RestaurantResponse, RestaurantListResponse
 from app.users.models import User
+from app.core.redis import redis_client
 
 
 class RestaurantService:
 
     def __init__(self):
         self.repository = RestaurantRepository()
+
 
     async def create_restaurant(
         self,
@@ -25,6 +28,9 @@ class RestaurantService:
         await db.commit()
         await db.refresh(restaurant)
 
+        # clear cached list
+        await redis_client.delete("restaurants:list")
+
         return restaurant
 
 
@@ -33,6 +39,13 @@ class RestaurantService:
         db: AsyncSession,
         restaurant_id: int
     ):
+
+        cache_key = f"restaurant:{restaurant_id}"
+
+        cached = await redis_client.get(cache_key)
+        if cached:
+            return RestaurantResponse(**json.loads(cached))
+
         restaurant = await self.repository.get_by_id(db, restaurant_id)
 
         if not restaurant:
@@ -40,6 +53,14 @@ class RestaurantService:
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Restaurant not found"
             )
+
+        restaurant_data = RestaurantResponse.model_validate(restaurant)
+
+        await redis_client.set(
+            cache_key,
+            json.dumps(restaurant_data.model_dump(), default=str),
+            ex=300
+        )
 
         return restaurant
 
@@ -50,7 +71,27 @@ class RestaurantService:
         skip: int = 0,
         limit: int = 10
     ):
-        return await self.repository.list(db, skip, limit)
+
+        cache_key = f"restaurants:list:{skip}:{limit}"
+
+        cached = await redis_client.get(cache_key)
+        if cached:
+            return [RestaurantListResponse(**item) for item in json.loads(cached)]
+
+        restaurants = await self.repository.list(db, skip, limit)
+
+        data = [
+            RestaurantListResponse.model_validate(r).model_dump()
+            for r in restaurants
+        ]
+
+        await redis_client.set(
+            cache_key,
+            json.dumps(data, default=str),
+            ex=300
+        )
+
+        return restaurants
 
 
     async def update_restaurant(
@@ -77,6 +118,10 @@ class RestaurantService:
         await db.commit()
         await db.refresh(updated_restaurant)
 
+        # invalidate cache
+        await redis_client.delete(f"restaurant:{restaurant_id}")
+        await redis_client.delete("restaurants:list")
+
         return updated_restaurant
 
 
@@ -98,5 +143,9 @@ class RestaurantService:
 
         await db.commit()
         await db.refresh(restaurant)
+
+        # invalidate cache
+        await redis_client.delete(f"restaurant:{restaurant_id}")
+        await redis_client.delete("restaurants:list")
 
         return {"message": "Restaurant deleted successfully"}
