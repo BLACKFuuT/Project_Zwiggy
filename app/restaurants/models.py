@@ -5,7 +5,7 @@ from typing import Optional
 from sqlalchemy import String, Text, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
-
+from uuid import UUID
 from app.core.database import Base
 
 
@@ -20,7 +20,7 @@ class Restaurant(Base):
 
     address: Mapped[str] = mapped_column(String(500), nullable=False)
 
-    owner_id: Mapped[int] = mapped_column(
+    owner_id: Mapped[UUID] = mapped_column(
         ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False,
         index=True

@@ -29,3 +29,12 @@ class MenuItemResponse(MenuItemBase):
 
     class Config:
         from_attributes = True
+        
+        
+# app/menu_items/schemas.py
+
+class MenuItemListResponse(BaseModel):
+    id: int
+    name: str
+    price: float
+    is_available: bool

@@ -2,7 +2,7 @@ from uuid import UUID
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr,ConfigDict
 
 
 class ProfileBase(BaseModel):
@@ -13,8 +13,7 @@ class ProfileBase(BaseModel):
 class ProfileResponse(ProfileBase):
     id: UUID
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # -------- USER SCHEMAS --------
@@ -41,5 +40,4 @@ class UserResponse(UserBase):
     created_at: datetime
     profile: Optional[ProfileResponse]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

@@ -45,7 +45,9 @@ class UserRepository:
         )
 
         result = await self.db.execute(stmt)
-        return result.scalar_one_or_none()
+        ans = result.scalar_one_or_none()
+        print(ans)
+        return ans
 
     async def soft_delete(self, user: User):
         from datetime import datetime

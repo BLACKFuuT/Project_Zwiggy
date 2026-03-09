@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel
+from uuid import UUID
 
 
 class OrderItemCreate(BaseModel):
@@ -10,27 +11,24 @@ class OrderItemCreate(BaseModel):
 
 class OrderCreate(BaseModel):
     restaurant_id: int
-    items: List[OrderItemCreate]
+    items: List[OrderItemCreate]        
 
 
 class OrderItemResponse(BaseModel):
-    id: int
     menu_item_id: int
+    menu_item_name: str
     quantity: int
     price: float
-
-    class Config:
-        from_attributes = True
 
 
 class OrderResponse(BaseModel):
     id: int
-    customer_id: int
+    customer_id: UUID
     restaurant_id: int
+    restaurant_name: str
     status: str
     total_amount: float
     created_at: datetime
     items: List[OrderItemResponse]
-
-    class Config:
-        from_attributes = True
+    
+    
