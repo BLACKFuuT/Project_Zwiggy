@@ -15,7 +15,7 @@ class AdminService:
         user_id: UUID,
         role_name: str
     ):
-        # 1️⃣ check if user exists
+        #  check if user exists
         user_result = await db.execute(
             select(User).where(User.id == user_id)
         )
@@ -27,7 +27,7 @@ class AdminService:
                 detail="User not found"
             )
 
-        # 2️⃣ get role by name
+        # get role by name
         role_result = await db.execute(
             select(Role).where(Role.name == role_name)
         )
@@ -39,7 +39,7 @@ class AdminService:
                 detail="Role not found"
             )
 
-        # 3️⃣ remove existing roles
+        # remove existing roles
         existing_roles = await db.execute(
             select(UserRole).where(UserRole.user_id == user_id)
         )
@@ -47,7 +47,7 @@ class AdminService:
         for ur in existing_roles.scalars().all():
             await db.delete(ur)
 
-        # 4️⃣ assign new role
+        #  assign new role
         user_role = UserRole(
             user_id=user_id,
             role_id=role.id

@@ -6,6 +6,8 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import DeclarativeBase
 from app.core.config import settings
 
+from typing import AsyncGenerator
+
 
 class Base(DeclarativeBase):
     pass
@@ -21,12 +23,6 @@ AsyncSessionLocal = async_sessionmaker(
     expire_on_commit=False,
 )
 
-
-# async def get_db() -> AsyncSession:
-#     async with AsyncSessionLocal() as session:
-#         yield session
-
-from typing import AsyncGenerator
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:

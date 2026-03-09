@@ -3,8 +3,10 @@ import asyncio
 import aioredis  # Async Redis client
 import uuid  # Needed for UUID type check
 
+from app.core.config import settings
+
 # Redis URL (change if needed)
-REDIS_URL = "redis://localhost:6379/0"          
+REDIS_URL = settings.REDIS_URL
 
 # Singleton Redis connection
 _redis = None

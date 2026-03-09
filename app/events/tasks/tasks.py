@@ -3,9 +3,10 @@ import uuid
 import asyncio
 import aioredis
 
+from app.core.config import settings
 from app.core.celery_app import celery_app
 
-REDIS_URL = "redis://localhost:6379/0"
+REDIS_URL = settings.REDIS_URL
 
 
 class UUIDEncoder(json.JSONEncoder):

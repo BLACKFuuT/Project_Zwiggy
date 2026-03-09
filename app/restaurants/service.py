@@ -13,7 +13,6 @@ class RestaurantService:
     def __init__(self):
         self.repository = RestaurantRepository()
 
-
     async def create_restaurant(
         self,
         db: AsyncSession,
@@ -32,7 +31,6 @@ class RestaurantService:
         await redis_client.delete("restaurants:list")
 
         return restaurant
-
 
     async def get_restaurant(
         self,
@@ -64,7 +62,6 @@ class RestaurantService:
 
         return restaurant
 
-
     async def list_restaurants(
         self,
         db: AsyncSession,
@@ -92,7 +89,6 @@ class RestaurantService:
         )
 
         return restaurants
-
 
     async def update_restaurant(
         self,
@@ -123,7 +119,6 @@ class RestaurantService:
         await redis_client.delete("restaurants:list")
 
         return updated_restaurant
-
 
     async def delete_restaurant(
         self,
