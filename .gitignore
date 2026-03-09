@@ -1,6 +1,6 @@
 # Virtual environment
 venv/
-# .env
+.env
 
 # Python
 __pycache__/
@@ -12,9 +12,9 @@ __pycache__/
 .vscode/
 
 # OS
-# .DS_Store 
+.DS_Store
 
 # Docker
-# docker-compose.yml
-# Dockerfile
-# .dockerignore
+docker-compose.yml
+Dockerfile
+.dockerignore

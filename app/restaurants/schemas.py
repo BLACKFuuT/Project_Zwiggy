@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from uuid import UUID
 
 
@@ -30,16 +30,13 @@ class RestaurantResponse(RestaurantBase):
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        from_attributes = True
-        
-# app/restaurants/schemas.py
+    model_config = ConfigDict(from_attributes=True)
+
 
 class RestaurantListResponse(BaseModel):
     id: int
     name: str
     description: Optional[str] = None
     address: str
-    
-    class Config:
-        from_attributes = True
+
+    model_config = ConfigDict(from_attributes=True)

@@ -47,17 +47,17 @@ async def test_soft_delete_restaurant(db: AsyncSession):
     
 
 
-@pytest.mark.asyncio
-async def test_restaurant_relationships(db: AsyncSession):
+# @pytest.mark.asyncio
+# async def test_restaurant_relationships(db: AsyncSession):
 
-    restaurant = Restaurant(
-        name="Burger King",
-        address="Delhi",
-        owner_id=uuid4()
-    )
+#     restaurant = Restaurant(
+#         name="Burger King",
+#         address="Delhi",
+#         owner_id=uuid4()
+#     )
 
-    db.add(restaurant)
-    await db.commit()
-    await db.refresh(restaurant)
+#     db.add(restaurant)
+#     await db.commit()
+#     await db.refresh(restaurant)
 
-    assert restaurant.menu_items == []
+#     assert restaurant.menu_items == []

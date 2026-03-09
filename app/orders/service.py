@@ -27,7 +27,7 @@ class OrderService:
         restaurant = await self.restaurant_repo.get_by_id(db, data.restaurant_id)
         if not restaurant:
             raise HTTPException(status_code=404, detail="Restaurant not found")
-
+                                                                                            
         order = Order(
             customer_id=current_user.id,
             restaurant_id=data.restaurant_id,

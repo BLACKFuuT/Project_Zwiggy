@@ -54,7 +54,6 @@ async def test_get_restaurant_cache_miss(db):
         
 from fastapi import HTTPException
 
-
 @pytest.mark.asyncio
 async def test_get_restaurant_not_found(db):
 
@@ -70,5 +69,52 @@ async def test_get_restaurant_not_found(db):
         assert exc.value.status_code == 404
         
         
-if restaurants.owner_id != current_user.id:
-    raise 403
+@pytest.mark.asyncio
+async def test_update_restaurant_forbidden(db):
+
+    service = RestaurantService()
+
+    owner = type("User", (), {"id": uuid4()})()
+    other_user = type("User", (), {"id": uuid4()})()
+
+    repo = service.repository
+
+    restaurant = await repo.create(db, {
+        "name": "Burger King",
+        "address": "Delhi",
+        "owner_id": owner.id
+    })
+
+    await db.commit()
+
+    from app.restaurants.schemas import RestaurantUpdate
+    data = RestaurantUpdate(name="New Name")
+
+    with pytest.raises(Exception):
+
+        await service.update_restaurant(db, restaurant.id, data, other_user)
+        
+        
+@pytest.mark.asyncio
+async def test_delete_restaurant(db):
+
+    service = RestaurantService()
+
+    user = type("User", (), {"id": uuid4()})()
+
+    repo = service.repository
+
+    restaurant = await repo.create(db, {
+        "name": "Delete Test",
+        "address": "Delhi",
+        "owner_id": user.id
+    })
+
+    await db.commit()
+
+    with patch("app.restaurants.service.redis_client.get", new_callable=AsyncMock) as mock_get, \
+     patch("app.restaurants.service.redis_client.delete", new_callable=AsyncMock):
+
+        mock_get.return_value = None
+
+    result = await service.delete_restaurant(db, restaurant.id, user)

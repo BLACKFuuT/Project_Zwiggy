@@ -3,7 +3,7 @@
 import aioredis
 import asyncio
 import json
-
+from aiokafka import AIOKafkaConsumer  # ✅ correct
 async def start_consumer():
     """
     Start a Redis consumer to process order events.
