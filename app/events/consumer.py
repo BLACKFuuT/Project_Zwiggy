@@ -8,11 +8,11 @@ async def start_consumer():
     """
     Start a Redis consumer to process order events.
     """
-    redis = aioredis.from_url("redis://localhost:6379", encoding="utf-8", decode_responses=True)
+    redis = aioredis.from_url("redis://redis:6379", encoding="utf-8", decode_responses=True)
     pubsub = redis.pubsub()
     await pubsub.subscribe("orders_channel")
 
-    print("✅ Redis consumer started. Listening for order events...")
+    print(" Redis consumer started. Listening for order events...")
 
     async for message in pubsub.listen():
         if message['type'] == 'message':

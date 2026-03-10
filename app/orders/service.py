@@ -67,10 +67,10 @@ class OrderService:
         await db.commit()
         
         send_order_email.delay(
-        current_user.email,
-        order.id,
-        total_amount
-)
+            current_user.email,
+            order.id,
+            total_amount
+    )
         
 
         # reload order with relations
